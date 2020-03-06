@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Todos } from './components/Todos';
+import AddToDo from './components/AddToDo';
 
 class App extends React.Component {
 
@@ -14,10 +15,7 @@ class App extends React.Component {
 
   deleteToDo = (id) => {
 
-    const newToDos = this.state.todos.filter(item => {
-        if(item.id !== id)
-          return item;
-      });
+    const newToDos = this.state.todos.filter(item => item.id !== id);
 
     this.setState({
       todos: [...newToDos]
@@ -34,11 +32,24 @@ class App extends React.Component {
     })
   }
 
+  addToDo = (data) => {
+    // const newToDos = this.state.todos;
+    // newToDos.push()
+    this.setState({
+      todos: [...this.state.todos, {
+        title: data,
+        id: 100,
+        isComplete: false
+      }]
+    });
+  }
+
 
   render() {
     return (      
       <div>
-        <Todos todos={this.state.todos} deleteTodo={this.deleteToDo} toggleToDo = {this.toggleToDo}/>
+        <AddToDo addToDo={this.addToDo}/>
+        <Todos todos={this.state.todos} deleteTodo={this.deleteToDo} toggleToDo={this.toggleToDo}/>
       </div>
     );
   }

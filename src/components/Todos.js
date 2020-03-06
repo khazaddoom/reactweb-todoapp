@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Todo } from './Todo';
 
 export class Todos extends React.Component {
     render() {
-console.log(this.props.todos)
+
+        
         return (
            this.props.todos.map(todo => (
-               <Todo todoData={todo} deleteTodo={this.props.deleteTodo} toggleToDo = {this.props.toggleToDo}/>
+               <Todo todoData={todo} deleteTodo={this.props.deleteTodo} toggleToDo = {this.props.toggleToDo} />
            ))
         );
     }
