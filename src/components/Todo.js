@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Todo extends React.Component {
 
@@ -19,4 +20,8 @@ export class Todo extends React.Component {
     }
 }
 
-export default Todo
+Todo.propTypes = {
+    todoData: PropTypes.object.isRequired,
+    toggleToDo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
+}
