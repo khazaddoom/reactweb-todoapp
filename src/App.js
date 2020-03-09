@@ -44,15 +44,11 @@ class App extends React.Component {
       else
         return largest
     }, 1)
-    console.log(largest + 1)
     return largest + 1
 
   }
 
   addToDo = (data) => {
-    // const newToDos = this.state.todos;
-    // newToDos.push()
-    
     this.setState({
       todos: [...this.state.todos, {
         title: data,
