@@ -1,4 +1,5 @@
 import React from 'react'
+import '../App.css'
 
 export class AddToDo extends React.Component {
     state = {
@@ -14,8 +15,8 @@ export class AddToDo extends React.Component {
     render() {
         return (
             <div>
-                <input type="text" onChange={this.onChange} />
-                <button onClick={this.props.addToDo.bind(this, this.state.textValue)}>Add ToDo</button>
+                <input className="input" type="text" onChange={this.onChange} />
+                <button className="add-todo" onClick={this.props.addToDo.bind(this, this.state.textValue)}>Add ToDo</button>
             </div>
         )
     }
