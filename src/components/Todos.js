@@ -3,10 +3,17 @@ import { Todo } from './Todo';
 import PropTypes from 'prop-types';
 
 export class Todos extends React.Component {
-    render() {
+    render() {        
 
-        return (
-           this.props.todos.map(todo => (
+        let rawToDos = this.props.todos;
+        
+        if(this.props.tobeAppliedFilter === 'INPROGRESS')
+            rawToDos = rawToDos.filter(todo => !todo.isComplete)
+        else if(this.props.tobeAppliedFilter === 'COMPLETE')
+            rawToDos = rawToDos.filter(todo => todo.isComplete)
+
+        return ( 
+            rawToDos.map(todo => (
                <Todo todoData={todo} deleteTodo={this.props.deleteTodo} toggleToDo = {this.props.toggleToDo} />
            ))
         );

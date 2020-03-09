@@ -12,7 +12,7 @@ export class Todo extends React.Component {
     render() {
         return (
             <div style={this.getStyle()}>
-                <input type="checkbox" onChange={this.props.toggleToDo.bind(this, this.props.todoData.id)} />
+                <input type="checkbox" onChange={this.props.toggleToDo.bind(this, this.props.todoData.id)} checked={this.props.todoData.isComplete}/>
                 {this.props.todoData.title}
                 <button onClick={this.props.deleteTodo.bind(this, this.props.todoData.id)}>Delete</button>
             </div>

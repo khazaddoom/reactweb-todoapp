@@ -8,3 +8,10 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.main-container {
+
+  background-color: rgb(220, 226, 233);
+  padding: 10rem;
+
+}

@@ -5,6 +5,7 @@ import AddToDo from './components/AddToDo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import About from './components/About';
+import { FilterOptions } from './components/FilterOptions';
 
 class App extends React.Component {
 
@@ -13,7 +14,8 @@ class App extends React.Component {
       { id: 1, title: 'Finish Expense app', isComplete: false},
       { id: 2, title: 'Learn ReactJS', isComplete: false},
       { id: 3, title: 'Finish Expense app', isComplete: false}
-    ]
+    ],
+    selectedFilter: 'ALL'
   }
 
   deleteToDo = (id) => {
@@ -35,27 +37,51 @@ class App extends React.Component {
     })
   }
 
+  getNextId() {
+    const largest = this.state.todos.reduce((largest, current) => {
+      if(current.id > largest)
+        return current.id
+      else
+        return largest
+    }, 1)
+    console.log(largest + 1)
+    return largest + 1
+
+  }
+
   addToDo = (data) => {
     // const newToDos = this.state.todos;
     // newToDos.push()
+    
     this.setState({
       todos: [...this.state.todos, {
         title: data,
-        id: 100,
+        id: this.getNextId(),
         isComplete: false
       }]
     });
+  }
+
+  selectedFilter = (type) => {
+    this.setState({
+      selectedFilter: type
+    });    
   }
 
 
   render() {
     return (
       <Router>      
-        <div>
+        <div >
             <Header />
             <Route exact path="/" >
-              <AddToDo addToDo={this.addToDo}/>
-              <Todos todos={this.state.todos} deleteTodo={this.deleteToDo} toggleToDo={this.toggleToDo}/>
+              
+              <div className="main-container">
+                <AddToDo addToDo={this.addToDo}/>
+                <Todos todos={this.state.todos} deleteTodo={this.deleteToDo} toggleToDo={this.toggleToDo} tobeAppliedFilter={this.state.selectedFilter}/>
+                <FilterOptions selectedFilter={this.selectedFilter}/>
+              </div>              
+
             </Route>
             <Route path="/about" component={About} />
         </div>
